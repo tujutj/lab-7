@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жарти</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #joke {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Отримайте випадковий жарт</h1>
+    <button id="showJoke">Показати жарт</button>
+    <div id="joke">Тут з'явиться жарт!</div>
+
+    <script>
+        $(document).ready(function () {
+            $("#showJoke").click(function () {
+                $.get("jokes.txt", function (data) {
+                    const jokes = data.split("\n");
+                    const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+                    $("#joke").text(randomJoke.trim());
+                });
+            });
+        });
+    </script>
+</body>
+</html>
